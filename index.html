@@ -1,0 +1,47 @@
+<html>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+        .centered-div {
+            /* width: 300px; */
+            /* height: 200px; */
+            background-color: lightblue;
+            padding: 10vh;
+        }
+        #finalSum{
+            color: red;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="centered-div">
+                <input id="f" type="number" placeholder="First number"><br><br>
+                <input id="s" type="number" placeholder="Second number"><br><br>
+                <button onclick="mf()">Calculate Sum</button><br><br>
+                <div id="finalSum">Yokoso Watashino soul society</div>
+            </div>
+        </div>
+        <!-- 1. Changing the elements of the website once the website is loaded
+        2. actually calculating the sum based on the inputs and rendering -->
+        <script>
+            function mf() {
+                var f = document.getElementById('f').value
+                var s = document.getElementById('s').value
+                fetch("https://sum-server.100xdevs.com/sum?a="+f+"&b="+s)
+                .then(function(response){
+                    console.log(response);
+                    response.text().then(function(ans){
+                        document.getElementById("finalSum").innerHTML = ans;
+                    })
+                })
+
+                // var finalSum = parseInt(f)+parseInt(s);
+                // document.getElementById("finalSum").innerText = finalSum;
+            }
+        </script>
+    </body>
+</html>
